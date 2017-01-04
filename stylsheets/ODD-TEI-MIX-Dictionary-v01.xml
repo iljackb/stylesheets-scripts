@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://www.tei-c.org/ns/1.0"
+ xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:rng="http://relaxng.org/ns/structure/1.0"
+ xml:lang="en">
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title>ODD for Linguistic Dictionaries</title>
+    <author>Jack T. Bowers</author>
+   </titleStmt>
+   <publicationStmt>
+    <publisher>TEI Consortium</publisher>
+    <availability status="free">
+     <licence target="http://creativecommons.org/licenses/by-sa/3.0/"> Distributed under a Creative
+      Commons Attribution-ShareAlike 3.0 Unported License </licence>
+     <licence target="http://www.opensource.org/licenses/BSD-2-Clause"><p>Copyright 2013 TEI
+       Consortium.</p><p>All rights reserved.</p><p>Redistribution and use in source and binary
+       forms, with or without modification, are permitted provided that the following conditions are
+       met:</p><list>
+       <item>Redistributions of source code must retain the above copyright notice, this list of
+        conditions and the following disclaimer.</item>
+       <item>Redistributions in binary form must reproduce the above copyright notice, this list of
+        conditions and the following disclaimer in the documentation and/or other materials provided
+        with the distribution.</item>
+      </list><p>This software is provided by the copyright holders and contributors "as is" and any
+       express or implied warranties, including, but not limited to, the implied warranties of
+       merchantability and fitness for a particular purpose are disclaimed. In no event shall the
+       copyright holder or contributors be liable for any direct, indirect, incidental, special,
+       exemplary, or consequential damages (including, but not limited to, procurement of substitute
+       goods or services; loss of use, data, or profits; or business interruption) however caused
+       and on any theory of liability, whether in contract, strict liability, or tort (including
+       negligence or otherwise) arising in any way out of the use of this software, even if advised
+       of the possibility of such damage.</p></licence>
+     <p>TEI material can be licensed differently depending on the use you intend to make of it.
+      Hence it is made available under both the CC+BY and BSD-2 licences. The CC+BY licence is
+      generally appropriate for usages which treat TEI content as data or documentation. The BSD-2
+      licence is generally appropriate for usage of TEI content in a software environment. For
+      further information or clarification, please contact the <ref target="mailto:info@tei-c.org"
+       >TEI Consortium</ref>. </p>
+    </availability>
+   </publicationStmt>
+   <notesStmt>
+    <note type="ns">http://www.example.org/ns/nonTEI</note>
+   </notesStmt>
+   <sourceDesc>
+    <p>Written from scratch.</p>
+   </sourceDesc>
+  </fileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p>This customization loads the modules and external&#13; schemata necessary for writing TEI ODD documents.</p>
+   <schemaSpec ident="ODD-TEI-Language_Dictionaries" start="TEI schemaSpec elementSpec classSpec macroSpec div">
+    <moduleRef url="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/relaxng.rng"/>
+    <moduleRef key="header" except="handNote sponsor stdVals"/>
+    <moduleRef key="core" except="addrLine biblScope citedRange del divGen email expan gap gb imprint l lg mentioned milestone monogr postBox postCode said sic soCalled sp stage street teiCorpus"/>
+    <elementSpec module="core" ident="cit" mode="change">
+     <desc>
+      This element is being used in line with the reccomendations outlined by Romary and Wegstein (2012). In the TEI dictionary, this element contains three primary kinds of information which are specified by the values 
+      of the attribute @'<att>type</att>'; these values are defined below: eg: '<val>translation</val>'; '<val>encyclopedic-information</val>; and '<val>example</val>';
+     </desc>
+     <attList>
+      <attDef ident="type" mode="change">
+       <gloss>Attribute specifies <hi rend="italic">type</hi> of information contained in '<gi>cit</gi>' element</gloss>
+       <valList>
+        <valItem ident="translation" mode="add"><!--ONTOLEX:  -->
+         <equiv name="Translation" uri="http://www.isocat.org/datcat/DC-2970"/>
+         <desc>The TEI attribute value created instantiates ISOcat concept #DC-2970 registry.</desc>
+        </valItem>
+        <valItem ident="encylopedic-information"><!--ONTOLEX:  -->
+         <equiv name="encyclopedic-information" uri="http://www.isocat.org/datcat/DC-3828"/>
+         <desc>The concept of encyclopedic information has to do with basic knowledge about a given subject (as would be included in an encyclopedia); such information in the MIX language is a very important part of the
+          goals for this project. The TEI attribute value created instantiates ISOcat concept #DC-3828 registry.</desc>
+        </valItem>
+        <valItem ident="example"><!--ONTOLEX:  -->
+         <equiv name="example" uri="http://www.isocat.org/datcat/DC-222"/>
+         <desc>This value is given to specify that the content of the '<gi>cit</gi>' is an example of the given lexical item or form within the entire body of the MIX dataset. The TEI attribute value created instantiates ISOcat concept #DC-222 registry.</desc>
+        </valItem>
+       </valList>
+      </attDef>
+     </attList>
+    </elementSpec>
+    <moduleRef key="tei"/>
+    <moduleRef key="textstructure"/>
+    <moduleRef key="tagdocs"/>
+    <moduleRef key="dictionaries"/>
+    <elementSpec module="dictionaries" ident="entry"><!--ONTOLEX:  -->
+     <desc>As per the TEI dictionary standards, the head element is "<gi>entry</gi>"; each entry contains a unique identifier "@<att>xml:id</att>", all of which contain some kind of information about the contents. Where the lexical data necessitates, the entry element may take the attribute "<att>type</att>" with the value "<val>foreign</val>".
+      At least thus far, the only items in the MIX lexicon that are non-native are from Spanish, thus such items are not further marked-up to specify the langauge of origin. </desc>
+    </elementSpec>
+    <elementSpec module="dictionaries" ident="form"><!--ONTOLEX:  -->
+     <desc>The TEI 'form' element contains the various text forms that are used to represent the various aspects of the lexical item in the entry. 
+      Where the lexical data requires, in this document the '<gi>form</gi>' element also may contain the attribute "@<att>type</att>" which can take any of the following suggested values:
+      "<val>simple</val>", "<val>lemma</val>", "<val>variant</val>", "<val>compound</val>", "<val>derrivative</val>", "<val>inflected</val>", "<val>phrase</val>".
+     </desc>
+    </elementSpec>
+    <elementSpec module="dictionaries" ident="orth" mode="change"> <!-- ONTOLEX: http://www.w3.org/ns/lemon/ontolex/writtenRep -->
+     <equiv name="orthography" uri="http://www.isocat.org/datcat/DC-394"/>
+     <desc>The Mixtec working orthography is the orthographic system adhered to in this corpus and it corresponds to that used in the publications by SIL Mexico which are based on the reccomendations by
+      <orgName xml:lang="mix">Ve'e Tu'un Savi</orgName> (House of the Mixtec language) for a unified orthographical system for all varieties of the Mixtec language.
+      The TEI element modified instantiates ISOcat concept #DC-394 registry.</desc>
+    </elementSpec>
+    <elementSpec module="dictionaries" ident="oVar" mode="change">
+     <equiv name="spelling-variant" uri="http://www.isocat.org/datcat/DC-5612"/>
+     <desc>Contains any known occurences of variation in the orthographic conventions used to spell a single lexical item in the language. The spelling contained herein is that determined to be the antiquated form.
+      This is not common in the dataset at present, but there are currently several examples, and there are expected to be more as there have been some changes to the Mixtec orthographic system and I am awaiting consultation as to
+      the extent.The TEI element modified instantiates ISOcat concept #DC-5612 registry.
+     </desc>
+    </elementSpec>
+    <elementSpec module="dictionaries" ident="pron" mode="change">
+     <equiv name="pronunciation" uri="http://www.isocat.org/datcat/DC-407"/><!--ONTOLEX:  http://www.w3.org/ns/lemon/ontolex/phoneticRep -->
+     <desc>The international phonetic alphabet (IPA) is used as the primary system of transcribing spoken MIX language, and is included in accordance with the reccomendations for best practice in language documentation and linguistic analysis (Austin, 2005), (Bird and Simmons, 2003). 
+      The inclusion of a widely adopted system of phonetic transcription in the MIX lexicon is particularly important because of the fact that the working orthography does not represent the language's lexical tones, this creates a large number of homographs. 
+      Without any further distinction a potential user of the dictionary (academic or speaker) would have no way of knowing the pronunciation of the item from the orthographical reference alone.
+      The TEI element modified instantiates ISOcat concept #DC-407 registry.</desc>
+     <attList>
+      <attDef ident="notation" mode="change">
+        <valList>
+         <valItem ident="ipa" mode="add">
+          <gloss>International Phonetic Alphabet</gloss>
+         </valItem>
+         <valItem ident="zsampa" mode="add">
+          <gloss>ZSAMPA-based phonetic transcription system (ASCII)</gloss>
+         </valItem>
+        </valList>
+       </attDef>
+      </attList>
+     <remarks>
+      <ab> Where the language data necessitates; IPA transcriptions occur in the "pVar" as the value of  the attribute "@<att>style</att>"
+      (the difference of the attributes between the two is due to the fact that in the TEI 5 standards, the attribute "@<att>notation</att>" is not currently available within the "pVar" element). 
+      <date when-iso="2014-08-17"/> Regarding the aformentioned, I have put in a ticket on the TEI Sourceforge site requesting to make the @<att>notation</att> available in the 'pVar' element.</ab>
+     </remarks>
+    </elementSpec>
+    <elementSpec module="dictionaries" ident="pVar" mode="change">
+     <equiv name="pronunciation-variant" uri="http://www.isocat.org/datcat/DC-409"/>
+     <desc>Pronunciation variations that are observed multiple times in the spoken MIX data are represented in the dictionary.
+      However, given the relatively small number of speakers that make up the sources of the speech data collected, and the fact that as of yet, not all of the spoken data collected has been transcribed, the criteria according to which we decide to represent pronunciation variants in the dictionary will have to be refined.
+      Where necessitated, a given entry may need multiple instances of the "pVar" element to account for as many regular variations as instantiated in the lexical data; Currently, the source language data is not yet sufficiently marked-up and quantified to a degree from which we can implement a more systematic system of reflecting the preferences in the variant pronunciations.
+      However when the source data is completely annotated, we can implement a system in which more systematic statistics-based methods of tracking variation. 
+     </desc>
+     <attList>
+      <attList>
+       <attDef ident="notation" mode="add">
+        <valList type="closed">
+         <valItem ident="ipa" mode="add">
+          <gloss>International Phonetic Alphabet</gloss>
+         </valItem>
+         <valItem ident="zsampa">
+          <gloss>ZSAMPA-based phonetic transcription system using only ASCII characters</gloss>
+         </valItem>
+        </valList>
+       </attDef>
+       <attDef ident="style">
+        <valList type="closed">
+         <valItem ident="ipa" mode="change">
+          <gloss>International Phonetic Alphabet</gloss>
+         </valItem>
+         <valItem ident="zsampa">
+          <gloss>ZSAMPA-based phonetic transcription system using only ASCII characters</gloss>
+         </valItem>
+        </valList>
+       </attDef>
+      </attList>
+     </attList>
+     <remarks>
+      <p>Because the same attributes are not available for both the elements containing phonetic representations of a lexical entry: ('<gi>pVar</gi>' and '<gi>pron</gi>'), '<gi>pVar</gi>') will likely be changed to: '<gi>pron</gi>'
+       containg attributes: '<att>notation</att>="(<val>ipa</val>|<val>zsampa</val>)") and @'<att>type</att>' or @'<att>ana</att>' with value of '<val>variant</val>'</p>
+     </remarks>
+    </elementSpec>
+    <elementSpec module="dictionaries" ident="usg" mode="change">
+     <desc>The system of representing information pertaining to the ontological/semantic domain of a given entry is included within the TEI element: "usg" ('usage'), as the value of the attribute "<att>type</att>"; "<val>dom</val>" stands for ('domain') eg: semantic domain;
+      <date when="2014-07-15"/>While the manner and system of markup will vary for certain lexical items such as verbs, or those which are more grammatical, in nature, the current system (implementation in progress) of specifying the semantic domain of a given item is expressed using a basic predicate-argument syntax;
+      <eg>for example: the MIX lexical item for the bird 'scrub jay'; (orth) 'kuili'; is expressed as: 'typeOf-Bird'</eg>. This is an example of the easiest type of semantic profile to represent and a single lexical item can have multiple semantic profiles that are simultaneously present and/or are active in only a given context (body part terms are a notorious example of such cases and are a major point of interest in the MIX language as well as in numerous other related forms of Mixtecan). In the current draft of this document, the semantic profiles of such complex items are limited to a basic 'Inclusion' or 'Meronymic' view. The more complex cases of any item are to be identified in full in the context of their use in the language. <date when="2014-07-12"/> Currently the use of a (2nd ed.) "usg" element is being considered as a potential place to include annotation information pertaining to the lexical, grammatical and other features of the language.
+     </desc>
+    </elementSpec>
+    <elementSpec module="dictionaries" ident="etym" mode="change">
+     <equiv name="etymology" uri="http://www.isocat.org/datcat/DC-221"/>
+     <desc>The TEI element modified instantiates ISOcat concept #DC-221 registry.</desc>
+     <attList>
+      <attDef ident="type" mode="change">
+       <valList type="open"><!-- once you decide all of the types of etymological info you want/will be including, change @type to 'closed' -->
+        <valItem ident="lexical-decomposition" mode="add">
+         <equiv name="lexical-decomposition" uri="http://www.isocat.org/datcat/DC-5281"/>
+         <desc>The TEI element modified instantiates ISOcat concept #DC-5281 registry. (ISOcat Description) "The decomposition feature is used for noun + noun compounds. It contains the segmentation of a compound noun into its two immediate noun components 
+          and the joining element in between them (if there is one), ‘+’ is used as joint marker." While this category is being grounded in the ISOcat repositiory's entry, it's use is not being restricted to just noun + noun compounds; instead it is 
+          used in any lexical item regardless of grammatical class that has been derrived from the grammaticalized of multiple sub-components.</desc>
+        </valItem>
+       </valList>
+      </attDef>
+     </attList>
+     <remarks>
+      <ab>
+       <date when="2014-07-12"/> 
+       The etymological information about a given lexical item where posited by researcher is included in the TEI element: "etym". As is the case in many other varieties of Mixtecan, 
+       there is a high frequency of lexical items derived through the processes of: Metaphor; Metonomy; and Blending;
+       these features are defined as ISO compliant TEI feature structures which are referenced within the "etym" element. 
+       
+       I am currently in the process of annotating the lexical items that can be clearly identified as having been derrived by means of one of these processes; these features are referenced as the value of the attribute "@<att>ana</att>";
+       In the case of items which are the result of blends or compounds (as many are in MIX), a pointer to the lexical source(s) from which it derrived is included with a "ref"
+       element in the attribute "@<att>target</att>"; (as of <date when="2014-07-12"/> I am in the process of implementing this aspect of the markup). 
+       Although the above is sufficient to connect the etymological information and the lexical item for computer processing, this information may also be useful for humans,
+       thus the lexical source pointed to in the "@<att>target</att>" may be explicitly written as the value of the "ref" element as well;
+       Being able to keep track of the instances and sources of lexical innovation is a very rich and promising avenue to be pursued in the analysis of this, and other Mixtecan languages.
+      </ab>
+     </remarks>
+     
+    </elementSpec>
+    <elementSpec module="dictionaries" ident="def">
+     <desc></desc>
+     <remarks><ab>The "definition" element is present but due to issues pertaining to the availability of speaker consultants they have not yet been utilized. However, at some future point, the quality and usability of the dictionary would be greatly enhanced with MIX-language descriptions of the entry.
+      Potentially, were we to have a significant quantity of entries with definitions in MIX, Spanish and English, this information could be used for the purposes of
+      connecting the MIX lexical data and the knowledge it represents to upper level systems of language-independant ontologies. (elaborate, mention semantic web, potential applications, implications): LS, KOS.. Connect to upper level ontology</ab></remarks>
+    </elementSpec>
+    <moduleRef key="linking" except="alt altGrp timeline when"/>
+    <moduleRef key="figures" except="notatedMusic"/>
+    <!-- required to avoid Sanity Checker complaint -->
+    <macroSpec ident="macro.schemaPattern" mode="change" module="tagdocs">
+     <content>
+      <group xmlns="http://relaxng.org/ns/structure/1.0">
+       <choice>
+        <text/>
+        <oneOrMore>
+         <choice>
+          <ref name="pattern"/>
+          <ref name="define"/>
+         </choice>
+        </oneOrMore>
+       </choice>
+       <zeroOrMore>
+        <ref name="anySchematron"/>
+       </zeroOrMore>
+      </group>
+     </content>
+    </macroSpec>
+    <macroSpec ident="anySchematron" mode="add">
+     <content>
+      <element xmlns="http://relaxng.org/ns/structure/1.0">
+       <nsName ns="http://www.ascc.net/xml/schematron"/>
+       <zeroOrMore>
+        <choice>
+         <attribute>
+          <anyName/>
+         </attribute>
+         <ref name="anySchematron"/>
+         <text/>
+        </choice>
+       </zeroOrMore>
+      </element>
+     </content>
+    </macroSpec>
+    <moduleRef key="iso-fs"/>
+    <moduleRef key="analysis" except="cl m phr s w"/>
+    <moduleRef key="certainty"/>
+    <moduleRef key="namesdates" except="addName affiliation climate death education faith floruit forename nameLink nym offset org"/>
+   </schemaSpec>
+  </body>
+ </text>
+</TEI>

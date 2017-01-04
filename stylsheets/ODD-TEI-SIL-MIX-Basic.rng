@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="http://www.tei-c.org/ns/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="TEI">
+      <attribute>
+        <name ns="http://www.w3.org/XML/1998/namespace">lang</name>
+        <data type="NCName"/>
+      </attribute>
+      <element name="teiHeader">
+        <element name="fileDesc">
+          <element name="titleStmt">
+            <element name="title">
+              <text/>
+            </element>
+            <element name="author">
+              <text/>
+            </element>
+          </element>
+          <element name="publicationStmt">
+            <ref name="p"/>
+          </element>
+          <element name="notesStmt">
+            <element name="note">
+              <attribute name="type">
+                <data type="NCName"/>
+              </attribute>
+              <data type="anyURI"/>
+            </element>
+          </element>
+          <element name="sourceDesc">
+            <ref name="p"/>
+          </element>
+        </element>
+      </element>
+      <element name="text">
+        <element name="front">
+          <element name="divGen">
+            <attribute name="type">
+              <data type="NCName"/>
+            </attribute>
+          </element>
+        </element>
+        <element name="body">
+          <ref name="p"/>
+          <element name="schemaSpec">
+            <attribute name="docLang">
+              <data type="NCName"/>
+            </attribute>
+            <attribute name="ident">
+              <data type="NCName"/>
+            </attribute>
+            <attribute name="prefix">
+              <data type="NCName"/>
+            </attribute>
+            <attribute>
+              <name ns="http://www.w3.org/XML/1998/namespace">lang</name>
+              <data type="NCName"/>
+            </attribute>
+            <oneOrMore>
+              <element name="moduleRef">
+                <optional>
+                  <attribute name="except"/>
+                </optional>
+                <attribute name="key">
+                  <data type="NCName"/>
+                </attribute>
+              </element>
+            </oneOrMore>
+            <oneOrMore>
+              <element name="elementSpec">
+                <attribute name="ident">
+                  <data type="NCName"/>
+                </attribute>
+                <attribute name="mode">
+                  <data type="NCName"/>
+                </attribute>
+                <attribute name="module">
+                  <data type="NCName"/>
+                </attribute>
+              </element>
+            </oneOrMore>
+          </element>
+        </element>
+      </element>
+    </element>
+  </start>
+  <define name="p">
+    <element name="p">
+      <text/>
+    </element>
+  </define>
+</grammar>

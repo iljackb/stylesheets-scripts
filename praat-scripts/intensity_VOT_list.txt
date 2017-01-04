@@ -1,0 +1,7 @@
+File name	
+File name	
+File name	
+S_want_1st_sg_it_to_rain_tomorrow_03_spkrTS	477
+voice onset time for S_want_1st_sg_it_to_rain_tomorrow_03_spkrTS is 	0.033692708333333155	
+V_run_1st_sg_01_spkrJS	113
+voice onset time for V_run_1st_sg_01_spkrJS is 	0.10684374999999996	
